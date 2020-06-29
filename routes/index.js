@@ -19,4 +19,17 @@ router.get("/graduates", (req, res) => {
   });
 });
 
+router.get("/project", (req, res) => {
+  const url = "https://rad5graduates.herokuapp.com/api/projects";
+  res.status(200);
+  request(url, { json: true }, (err, response, body) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const projectData = body.classOf2020;
+      res.render("project", { projectData });
+    }
+  });
+});
+
 module.exports = router;
